@@ -1,5 +1,7 @@
-package ru.gb.lesson.lesson6.pages.tests;
+package ru.gb.lesson.lesson6.tests;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.gb.lesson.lesson6.PrepareTestExtention;
@@ -9,6 +11,7 @@ import ru.gb.lesson.lesson6.pages.MainPage;
 public class LoginAndLogoutTest extends PrepareTestExtention {
     @Test
     @DisplayName("positive auth")
+    @Severity(SeverityLevel.BLOCKER)
     void successfulAuthTest() {
         webDriver.get(URL);
         new MainPage(webDriver)
@@ -22,6 +25,7 @@ public class LoginAndLogoutTest extends PrepareTestExtention {
 
     @Test
     @DisplayName("negative auth")
+    @Severity(SeverityLevel.CRITICAL)
     void incorrectPasswordFailedAuthTest() {
         webDriver.get(URL);
         new LoginPage(webDriver)

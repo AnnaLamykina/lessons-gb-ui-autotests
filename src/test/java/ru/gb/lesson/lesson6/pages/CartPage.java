@@ -1,5 +1,6 @@
 package ru.gb.lesson.lesson6.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,6 +16,7 @@ public class CartPage extends BasePage {
         super(webDriver);
     }
 
+    @Step("Check 1 product in cart, remove them")
     public void checkProductsInCartAndRemoveThem() {
         WebElement productsCount = webDriver.findElement(By.xpath("//a[@class='basket-items-list-header-filter-item active']"));
         assertThat(productsCount.getText()).isEqualTo("В корзине 1 товар");

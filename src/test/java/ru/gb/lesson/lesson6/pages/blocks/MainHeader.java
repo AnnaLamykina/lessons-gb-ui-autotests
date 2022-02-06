@@ -1,5 +1,6 @@
 package ru.gb.lesson.lesson6.pages.blocks;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -26,11 +27,13 @@ public class MainHeader extends BaseView {
         super(webDriver);
     }
 
+    @Step("Go to contacts page")
     public ContactsPage goToContactPage() {
         webDriver.findElement(By.xpath("(//a[contains(text(),'Контакты')])[2]")).click();
         return new ContactsPage(webDriver);
     }
 
+    @Step("Go to products page")
     public ProductsPage goToProductPage() {
         new Actions(webDriver)
                 .moveToElement(webDriver.findElement(By.xpath("//a[text()='Кошки']")))
@@ -40,13 +43,13 @@ public class MainHeader extends BaseView {
         return new ProductsPage(webDriver);
     }
 
+    @Step("Go to login page")
     public LoginPage goToLoginPage() {
         loginButton.click();
         return new LoginPage(webDriver);
     }
 
-
-
+    @Step("Searhc product")
     public SearchPage search(String productType) {
         webDriver.findElement(By.xpath("(//input[@id='title-search-input'])[2]")).click();
         webDriver.findElement(By.xpath("(//input[@id='title-search-input'])[2]")).sendKeys(productType);
@@ -54,12 +57,14 @@ public class MainHeader extends BaseView {
         return new SearchPage(webDriver);
     }
 
+    @Step("Click logout and, check that login appears")
     public void checkLoginAndLogout() {
         assertThat(logoutButton.getText()).isEqualTo("Выйти");
         logoutButton.click();
         assertThat(loginButton.getText()).isEqualTo("Вход");
     }
 
+    @Step("Favorite product")
     public String favoriteProduct(){
         List<WebElement> catalogPopulars = webDriver.findElements(By.xpath("(//div[contains(@class, 'catalog_popular')])"));
         WebElement product=catalogPopulars.get(0).findElement(By.xpath("(//div[contains(@class, 'catalog_popular_name')])"));
@@ -69,6 +74,7 @@ public class MainHeader extends BaseView {
         return productName;
     }
 
+    @Step("Go to favorites page")
     public FavoritesPage goToFavorite(){
         webDriver.findElement(By.xpath("(//div[contains(@class, 'favoritesHeader hidden-md hidden-sm hidden-xs')])")).click();
         return new FavoritesPage(webDriver);

@@ -1,5 +1,6 @@
 package ru.gb.lesson.lesson6.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,6 +18,7 @@ public class LoginPage extends BasePage {
         super(webDriver);
     }
 
+    @Step("Try to login")
     public LoginPage login(String login, String password) {
         WebElement authForm = webDriver.findElement(authFormLocator);
         authForm.findElement(userNameInput).sendKeys(login);
@@ -25,6 +27,7 @@ public class LoginPage extends BasePage {
         return this;
     }
 
+    @Step("Check login errors")  
     public void checkError(String errorText) {
         assertThat(webDriver.findElement(errorFont).getText())
                 .isEqualTo(errorText);

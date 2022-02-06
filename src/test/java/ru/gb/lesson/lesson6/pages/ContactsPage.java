@@ -1,5 +1,6 @@
 package ru.gb.lesson.lesson6.pages;
 
+import io.qameta.allure.Step;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +13,7 @@ public class ContactsPage extends BasePage {
         super(webDriver);
     }
 
+    @Step("Check, that page has right contacts")
     public void checkContacts() {
         WebElement contacts = webDriver.findElement(By.xpath("(//div[contains(@class, 'col-lg-5 col-md-5 col-sm-5 col-xs-12 contact_info')])"));
         List<WebElement> elements = contacts.findElements(new By.ByCssSelector("p"));
